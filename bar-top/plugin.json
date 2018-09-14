@@ -1,8 +1,10 @@
 {
   "name": "bar-top",
-  "url": "https://github.com/miniminelp/mcscriptStudioExplorer",
+  "url": "https://github.com/MinimineLP/MCScriptStudioCode-core-plugins/tree/master/bar-top",
   "author": "Minimine",
   "author-url": "https://github.com/miniminelp/",
-  "version": "0.0.1",
-  "main": "bar-top.js"
+  "newestversion": "0.0.1",
+  "versions": [
+	"0.0.1": "https://raw.githubusercontent.com/MinimineLP/MCScriptStudioCode-core-plugins/master/bar-top/versions/0.0.1.zip"
+  ]
 }

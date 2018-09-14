@@ -1,9 +1,12 @@
 {
   "name": "editor",
-  "url": "https://github.com/miniminelp/mcscriptStudioExplorer",
+  "url": "https://github.com/MinimineLP/MCScriptStudioCode-core-plugins/tree/master/editor",
   "author": "Minimine",
   "author-url": "https://github.com/miniminelp/",
   "version": "0.0.1",
   "main": "editor.js",
-  "download": ""
+  "newestversion": "0.0.1",
+  "versions": [
+	"0.0.1": "https://raw.githubusercontent.com/MinimineLP/MCScriptStudioCode-core-plugins/master/editor/versions/0.0.1.zip"
+  ]
 }
