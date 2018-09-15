@@ -1,10 +1,10 @@
 {
-  "name": "bar-top",
+  "name": "alert",
   "url": "https://github.com/MinimineLP/MCScriptStudioCode-core-plugins/tree/master/bar-top",
   "author": "Minimine",
   "author-url": "https://github.com/miniminelp/",
   "newestversion": "0.0.1",
   "versions": {
-	"0.0.1": "https://raw.githubusercontent.com/MinimineLP/MCScriptStudioCode-core-plugins/master/bar-top/versions/0.0.1/bar-top.zip"
+	"0.0.1": "https://raw.githubusercontent.com/MinimineLP/MCScriptStudioCode-core-plugins/master/alert/versions/0.0.1/alert.zip"
   }
 }
