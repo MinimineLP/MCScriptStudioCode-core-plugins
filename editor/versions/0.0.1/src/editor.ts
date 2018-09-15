@@ -9,8 +9,6 @@ export default class Explorer extends Plugin {
 
 
 
-    server.addScript(`${__dirname}/htdocs/scripts/dest/sweetalert-min.js`);
-
 		server.addScript(`${__dirname}/htdocs/codemirror/lib/codemirror.js`);
 
 		server.addScript(`${__dirname}/htdocs/codemirror/addon/dialog/dialog.js`);
@@ -58,9 +56,8 @@ export default class Explorer extends Plugin {
 
     server.addScript(`${__dirname}/htdocs/scripts/dest/language-mcfunction-min.js`);
     server.addScript(`${__dirname}/htdocs/scripts/dest/language-mcscript-min.js`);
-    server.addScript(`${__dirname}/htdocs/scripts/dest/editor-min.js`);
+    server.addScript(`${__dirname}/htdocs/scripts/dest/editor.js`);
     server.addScript(`${__dirname}/htdocs/scripts/dest/MineEditor-min.js`);
-    server.addScript(`${__dirname}/htdocs/scripts/dest/MinMineEditor-min.js`);
     server.addStylesheet(`${__dirname}/htdocs/css/global.min.css`);
 
   }

@@ -22,18 +22,56 @@ var editor = {
 
   texteditors: [],
 
+  // getEditorCanvas: get editor canvas from editor
+  getEditorCanvas: function getEditorCanvas(editor) {
+    function getFirstSubElementByClass(element, getclass) {
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = element.childNodes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var c = _step.value;
+
+          if (c.className == getclass) {
+            return c;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+    }
+    return getFirstSubElementByClass(editor, "MineEditor-canvas");
+  },
   getMode: function getMode(ending) {
     if (editor.highlights[ending]) return editor.highlights[ending];
     return ending;
   },
   save: function save() {
-    if (editor.actual) editor.opened[editor.actual].save();else swal("Nothing to save!", "Sorry, but there is nothing to save, please select a file!", "error");
+    if (editor.actual) editor.opened[editor.actual].save();else swal({ title: "Nothing to save!", text: "Sorry, but there is nothing to save, please select a file!", icon: "error", className: "top-right" });
   },
   undo: function undo() {
-    if (editor.actual) editor.opened[editor.actual].editor.undo();else swal("Nothing to undo!", "Sorry, but there is nothing to undo, please select a file!", "error");
+    editor.focus();
+    if (!editor.actual) swal({ title: "Nothing to undo!", text: "Sorry, but there is nothing to undo, please select a file!", icon: "error", className: "top-right" });else if (editor.opened[editor.actual].type == "code") editor.opened[editor.actual].editor.undo();else document.execCommand("undo");
   },
   redo: function redo() {
-    if (editor.actual) editor.opened[editor.actual].editor.redo();else swal("Nothing to redo!", "Sorry, but there is nothing to redo, please select a file!", "error");
+    editor.focus();
+    if (!editor.actual) swal({ title: "Nothing to redo!", text: "Sorry, but there is nothing to redo, please select a file!", icon: "error", className: "top-right" });else if (editor.opened[editor.actual].type == "code") editor.opened[editor.actual].editor.redo();else document.execCommand("redo");
+  },
+  focus: function focus() {
+    if (!editor.actual) return;
+    if (editor.opened[editor.actual].type == "code") editor.opened[editor.actual].editor.focus();else editor.getEditorCanvas(editor.opened[editor.actual].div).focus();
   },
   open: function open(path) {
 
@@ -60,11 +98,11 @@ var editor = {
       if (type == "code") await server.saveFile(path, edit.getDoc().getValue()).then(function (res) {
         editor.opened[path].content = edit.getDoc().getValue();
         frame.removeClass('edited');
-        swal("Successfully saved!", "File successfully saved to \"" + res.file.path + "\"", "success");
+        swal({ title: "Successfully saved!", text: "File successfully saved to \"" + res.file.path + "\"", icon: "success", className: "top-right" });
       });else if (type == "text") await server.saveFile(path, $("#" + editor.opened[path].id).val()).then(function (res) {
         editor.opened[path].content = $("#" + editor.opened[path].id).val();
         frame.removeClass('edited');
-        swal("Successfully saved!", "File successfully saved to \"" + res.file.path + "\"", "success");
+        swal({ title: "Successfully saved!", text: "File successfully saved to \"" + res.file.path + "\"", icon: "success", className: "top-right" });
       });
     };
 
@@ -94,6 +132,7 @@ var editor = {
         reloadEditors();
         if (editor.texteditors.includes(path)) editor.texteditors.remove(path);
         delete editor.opened[path];
+        delete editor.actual;
         return false;
       };
       if ($(this).parent().hasClass('edited')) {
@@ -130,27 +169,27 @@ var editor = {
 
 (function () {
   setInterval(function () {
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
 
     try {
-      for (var _iterator = editor.texteditors[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var path = _step.value;
+      for (var _iterator2 = editor.texteditors[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var path = _step2.value;
 
         if (editor.opened[path].content != $("#" + editor.opened[path].id).val()) editor.opened[path].frame.addClass('edited');else editor.opened[path].frame.removeClass('edited');
       }
     } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-          _iterator.return();
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+          _iterator2.return();
         }
       } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
+        if (_didIteratorError2) {
+          throw _iteratorError2;
         }
       }
     }

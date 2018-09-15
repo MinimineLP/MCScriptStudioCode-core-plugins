@@ -21,7 +21,6 @@ var Explorer = /** @class */ (function (_super) {
     }
     Explorer.prototype.setup = function (server) {
         this.server = server;
-        server.addScript(__dirname + "/htdocs/scripts/dest/sweetalert-min.js");
         server.addScript(__dirname + "/htdocs/codemirror/lib/codemirror.js");
         server.addScript(__dirname + "/htdocs/codemirror/addon/dialog/dialog.js");
         server.addScript(__dirname + "/htdocs/codemirror/addon/search/searchcursor.js");
@@ -62,9 +61,8 @@ var Explorer = /** @class */ (function (_super) {
         server.addScript(__dirname + "/htdocs/codemirror/mode/htmlmixed/htmlmixed.js");
         server.addScript(__dirname + "/htdocs/scripts/dest/language-mcfunction-min.js");
         server.addScript(__dirname + "/htdocs/scripts/dest/language-mcscript-min.js");
-        server.addScript(__dirname + "/htdocs/scripts/dest/editor-min.js");
+        server.addScript(__dirname + "/htdocs/scripts/dest/editor.js");
         server.addScript(__dirname + "/htdocs/scripts/dest/MineEditor-min.js");
-        server.addScript(__dirname + "/htdocs/scripts/dest/MinMineEditor-min.js");
         server.addStylesheet(__dirname + "/htdocs/css/global.min.css");
     };
     Explorer.prototype.start = function (server) {
