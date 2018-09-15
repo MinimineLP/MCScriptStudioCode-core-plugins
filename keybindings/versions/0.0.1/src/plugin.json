@@ -1,0 +1,8 @@
+{
+  "name": "keybindings",
+  "url": "https://github.com/miniminelp/mcscriptStudioExplorer",
+  "author": "Minimine",
+  "author-url": "https://github.com/miniminelp/",
+  "version": "0.0.1",
+  "main": "keybindings.js"
+}

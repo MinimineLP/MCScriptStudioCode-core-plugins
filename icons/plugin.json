@@ -3,10 +3,8 @@
   "url": "https://github.com/MinimineLP/MCScriptStudioCode-core-plugins/tree/master/icons",
   "author": "Minimine",
   "author-url": "https://github.com/miniminelp/",
-  "version": "0.0.1",
-  "main": "icons.js",
   "newestversion": "0.0.1",
   "versions": {
-	"0.0.1": "https://raw.githubusercontent.com/MinimineLP/MCScriptStudioCode-core-plugins/master/icons/versions/0.0.1.zip"
+	"0.0.1": "https://raw.githubusercontent.com/MinimineLP/MCScriptStudioCode-core-plugins/master/icons/versions/0.0.1/icons.zip"
   }
 }
