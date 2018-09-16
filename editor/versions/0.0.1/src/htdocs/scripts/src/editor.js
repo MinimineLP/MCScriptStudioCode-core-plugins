@@ -18,18 +18,6 @@ let editor = {
 
   texteditors: [],
 
-  // getEditorCanvas: get editor canvas from editor
-  getEditorCanvas(editor) {
-    function getFirstSubElementByClass(element, getclass) {
-      for (let c of element.childNodes) {
-        if (c.className == getclass) {
-          return c;
-        }
-      }
-    }
-    return getFirstSubElementByClass(editor,"MineEditor-canvas");
-  },
-
   getMode(ending) {
     if(editor.highlights[ending])return editor.highlights[ending];
     return ending;
@@ -37,27 +25,17 @@ let editor = {
 
   save() {
     if(editor.actual)editor.opened[editor.actual].save();
-    else swal({title: "Nothing to save!", text: `Sorry, but there is nothing to save, please select a file!`, icon: `error`, className: `top-right`});
+    else swal("Nothing to save!", `Sorry, but there is nothing to save, please select a file!`, "error");
   },
 
   undo() {
-    editor.focus();
-    if(!editor.actual) swal({title: "Nothing to undo!", text: `Sorry, but there is nothing to undo, please select a file!`, icon: `error`, className: `top-right`});
-    else if(editor.opened[editor.actual].type=="code")editor.opened[editor.actual].editor.undo();
-    else document.execCommand("undo");
+    if(editor.actual)editor.opened[editor.actual].editor.undo();
+    else swal("Nothing to undo!", `Sorry, but there is nothing to undo, please select a file!`, "error");
   },
 
   redo() {
-    editor.focus();
-    if(!editor.actual) swal({title: "Nothing to redo!", text: `Sorry, but there is nothing to redo, please select a file!`, icon: `error`, className: `top-right`});
-    else if(editor.opened[editor.actual].type=="code")editor.opened[editor.actual].editor.redo();
-    else document.execCommand("redo");
-  },
-
-  focus() {
-    if(!editor.actual)return;
-    if(editor.opened[editor.actual].type=="code")editor.opened[editor.actual].editor.focus();
-    else editor.getEditorCanvas(editor.opened[editor.actual].div).focus();
+    if(editor.actual)editor.opened[editor.actual].editor.redo();
+    else swal("Nothing to redo!", `Sorry, but there is nothing to redo, please select a file!`, "error");
   },
 
   open(path) {
@@ -85,12 +63,12 @@ let editor = {
       if(type=="code")await server.saveFile(path,edit.getDoc().getValue()).then(function(res) {
         editor.opened[path].content = edit.getDoc().getValue();
         frame.removeClass('edited');
-        swal({title: "Successfully saved!", text: `File successfully saved to "${res.file.path}"`, icon: `success`, className: `top-right`});
+        swal("Successfully saved!", `File successfully saved to "${res.file.path}"`, "success");
       });
       else if(type=="text")await server.saveFile(path,$(`#${editor.opened[path].id}`).val()).then(function(res) {
         editor.opened[path].content = $(`#${editor.opened[path].id}`).val();
         frame.removeClass('edited');
-        swal({title: "Successfully saved!", text: `File successfully saved to "${res.file.path}"`, icon: `success`, className: `top-right`});
+        swal("Successfully saved!", `File successfully saved to "${res.file.path}"`, "success");
       });
     }
 
@@ -120,7 +98,6 @@ let editor = {
         reloadEditors();
         if(editor.texteditors.includes(path))editor.texteditors.remove(path)
         delete editor.opened[path];
-        delete editor.actual;
         return false;
       }
       if($(this).parent().hasClass('edited')) {

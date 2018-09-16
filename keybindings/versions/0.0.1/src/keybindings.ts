@@ -1,25 +1,28 @@
-import {Plugin, ServerApi} from '../../src/PluginManager';
+declare let srclocation:string;
+declare let require: any
+declare let __dirname: any
+let {Plugin} = require(srclocation+'/PluginManager');
 
 export default class Explorer extends Plugin {
 
-  server:ServerApi;
+  server;
 
-  setup(server:ServerApi){
+  setup(server){
     this.server = server;
 
     server.addScript(`${__dirname}/htdocs/scripts/dest/keys-min.js`);
 
   }
 
-  start(server:ServerApi){
+  start(server){
     this.server = server;
   }
 
-  stop(server:ServerApi){
+  stop(server){
     this.server = server;
   }
 
-  reload(server: ServerApi) {
+  reload(server) {
     this.server = server;
   }
 }

@@ -1,13 +1,18 @@
-import {Plugin, ServerApi} from '../../src/PluginManager';
+declare let srclocation:string;
+declare let require: any
+declare let __dirname: any
+let {Plugin} = require(srclocation+'/PluginManager');
 
 export default class Explorer extends Plugin {
 
-  server:ServerApi;
+  server;
 
-  setup(server:ServerApi){
+  setup(server){
     this.server = server;
 
 
+
+    server.addScript(`${__dirname}/htdocs/scripts/dest/sweetalert-min.js`);
 
 		server.addScript(`${__dirname}/htdocs/codemirror/lib/codemirror.js`);
 
@@ -58,19 +63,20 @@ export default class Explorer extends Plugin {
     server.addScript(`${__dirname}/htdocs/scripts/dest/language-mcscript-min.js`);
     server.addScript(`${__dirname}/htdocs/scripts/dest/editor.js`);
     server.addScript(`${__dirname}/htdocs/scripts/dest/MineEditor-min.js`);
+    server.addScript(`${__dirname}/htdocs/scripts/dest/MinMineEditor-min.js`);
     server.addStylesheet(`${__dirname}/htdocs/css/global.min.css`);
 
   }
 
-  start(server:ServerApi){
+  start(server){
     this.server = server;
   }
 
-  stop(server:ServerApi){
+  stop(server){
     this.server = server;
   }
 
-  reload(server: ServerApi) {
+  reload(server) {
     this.server = server;
   }
 }

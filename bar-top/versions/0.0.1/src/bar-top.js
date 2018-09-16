@@ -13,7 +13,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 exports.__esModule = true;
-var PluginManager_1 = require("../../src/PluginManager");
+var Plugin = require(srclocation + '/PluginManager').Plugin;
 var Explorer = /** @class */ (function (_super) {
     __extends(Explorer, _super);
     function Explorer() {
@@ -34,5 +34,5 @@ var Explorer = /** @class */ (function (_super) {
         this.server = server;
     };
     return Explorer;
-}(PluginManager_1.Plugin));
+}(Plugin));
 exports["default"] = Explorer;
